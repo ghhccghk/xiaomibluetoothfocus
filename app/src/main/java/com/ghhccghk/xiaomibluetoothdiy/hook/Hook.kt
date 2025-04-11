@@ -11,7 +11,9 @@ import android.os.Bundle
 import cn.xiaowine.xkt.LogTool.log
 import cn.xiaowine.xkt.Tool.isNotNull
 import com.ghhccghk.xiaomibluetoothdiy.BaseHook
+import com.ghhccghk.xiaomibluetoothdiy.utils.ResInjectTool
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClassOrNull
+import com.github.kyuubiran.ezxhelper.EzXHelper
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import com.hyperfocus.api.FocusApi
@@ -23,9 +25,12 @@ object Hook : BaseHook() {
     @SuppressLint("MissingPermission", "PrivateApi")
     override fun init() {
         super.init()
+
         loadClassOrNull("com.android.bluetooth.ble.app.headset.b0").isNotNull {
             it.methodFinder().first { name == "a" }.createHook {
                 before  @androidx.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) { param ->
+                    ResInjectTool.injectModuleRes( EzXHelper.appContext)
+
                     val api = FocusApi()
                     param.result = null
                     val context = param.args[0] as Context

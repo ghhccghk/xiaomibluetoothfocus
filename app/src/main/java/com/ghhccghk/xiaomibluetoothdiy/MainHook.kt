@@ -2,6 +2,7 @@ package com.ghhccghk.xiaomibluetoothdiy
 
 import cn.xiaowine.xkt.LogTool
 import com.ghhccghk.xiaomibluetoothdiy.hook.Hook
+import com.ghhccghk.xiaomibluetoothdiy.utils.ResInjectTool
 import com.github.kyuubiran.ezxhelper.EzXHelper
 import com.github.kyuubiran.ezxhelper.Log
 import com.github.kyuubiran.ezxhelper.LogExtensions.logexIfThrow
@@ -29,6 +30,7 @@ class MainHook : IXposedHookLoadPackage, IXposedHookZygoteInit /* Optional */ {
     // Optional
     override fun initZygote(startupParam: IXposedHookZygoteInit.StartupParam) {
         EzXHelper.initZygote(startupParam)
+        ResInjectTool.init(startupParam.modulePath)
     }
 
     private fun initHooks(vararg hook: BaseHook) {
