@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="buttonBgColor">#0f000000</color>
+    <color name="contentColor">#cc000000</color>
+    <color name="contentColorV2">#99000000</color>
+    <color name="contentDecoColor">#99000000</color>
+    <color name="decoContentColorV2">#99000000</color>
+    <color name="decoSmallTitleColor">#e6000000</color>
+    <color name="decoTitleColor">#000000</color>
+    <color name="defaultBgColor">#e6ffffff</color>
+    <color name="descColor">#3482ff</color>
+    <color name="titleColor">#ffffff</color>
+    <color name="titleDecoColor">#e6ffffff</color>
+    <color name="lineColor">#19ffffff</color>
+</resources>

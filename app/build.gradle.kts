@@ -26,6 +26,7 @@ android {
                 "proguard-rules.pro"
             )
         }
+        androidResources.additionalParameters("--allow-reserved-package-id", "--package-id", "0x64")
         aaptOptions.cruncherEnabled = false
         buildFeatures.buildConfig = true
         dependenciesInfo.includeInApk = false
@@ -54,6 +55,7 @@ dependencies {
     implementation(libs.ezxhelper)
     implementation(libs.xkt)
     implementation(libs.dsp)
+    implementation(libs.dexkit)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)

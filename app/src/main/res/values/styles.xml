@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="FocusNotifyButtonTitleStyleV2">
+        <item name="android:textSize">13.0dp</item>
+        <item name="android:textColor">@color/contentColor</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">mipro-demibold</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:fallbackLineSpacing">false</item>
+    </style>
+    <style name="FocusNotifySampleSmallTitleStyleV2">
+        <item name="android:textSize">18.0dp</item>
+        <item name="android:textColor">@color/contentColorV2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">mipro-demibold</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:fallbackLineSpacing">false</item>
+    </style>
+    <style name="FocusNotifySpecialStyleV2">
+        <item name="android:textSize">12.0dp</item>
+        <item name="android:textColor">@color/titleColor</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">mipro-demibold</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:fallbackLineSpacing">false</item>
+    </style>
+    <style name="FocusNotifySpecialTextStyleV2">
+        <item name="android:textSize">12.0dp</item>
+        <item name="android:textColor">@color/titleColor</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:fontFamily">mipro-demibold</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:fallbackLineSpacing">false</item>
+    </style>
+</resources>

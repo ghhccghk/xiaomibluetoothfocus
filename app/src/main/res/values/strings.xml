@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
     <string name="xposed_desc">Provide Rice Painter fingerprint payment support</string>
+    <string name="focus_title">test\n</string>
 </resources>

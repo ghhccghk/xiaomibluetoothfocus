@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ProgressTinyBgColor">#e6000000</color>
+    <color name="bg">#77ffff00</color>
+    <color name="blur_dim_color">#59555555</color>
+    <color name="buttonBgColor">#0f000000</color>
+    <color name="contentColor">#cc000000</color>
+    <color name="contentColorV2">#99000000</color>
+    <color name="contentDecoColor">#99000000</color>
+    <color name="decoContentColorV2">#99000000</color>
+    <color name="decoSmallTitleColor">#e6000000</color>
+    <color name="decoTitleColor">#000000</color>
+    <color name="defaultBgColor">#e6ffffff</color>
+    <color name="descColor">#3482ff</color>
+    <color name="titleColor">#000000</color>
+    <color name="titleDecoColor">#e6000000</color>
+    <color name="lineColor">#19000000</color>
 </resources>
