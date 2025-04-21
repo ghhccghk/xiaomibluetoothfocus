@@ -1,39 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="FocusNotifyButtonTitleStyleV2">
-        <item name="android:textSize">13.0dp</item>
+        <item name="android:textSize">11.0sp</item>
         <item name="android:textColor">@color/contentColor</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
-        <item name="android:fontFamily">mipro-demibold</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:fallbackLineSpacing">false</item>
     </style>
     <style name="FocusNotifySampleSmallTitleStyleV2">
-        <item name="android:textSize">18.0dp</item>
+        <item name="android:textSize">18.0sp</item>
         <item name="android:textColor">@color/contentColorV2</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
-        <item name="android:fontFamily">mipro-demibold</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:fallbackLineSpacing">false</item>
     </style>
     <style name="FocusNotifySpecialStyleV2">
-        <item name="android:textSize">12.0dp</item>
+        <item name="android:textSize">12.0sp</item>
         <item name="android:textColor">@color/titleColor</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
-        <item name="android:fontFamily">mipro-demibold</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:fallbackLineSpacing">false</item>
     </style>
     <style name="FocusNotifySpecialTextStyleV2">
-        <item name="android:textSize">12.0dp</item>
+        <item name="android:textSize">12.0sp</item>
         <item name="android:textColor">@color/titleColor</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
-        <item name="android:fontFamily">mipro-demibold</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:fallbackLineSpacing">false</item>
+    </style>
+
+    <style name="TextValue">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="android:paddingBottom">24dp</item>
+    </style>
+
+    <!--toolbar样式-->
+    <style name="theme_toolbar" parent="Theme.Material3.DynamicColors.DayNight">
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimaryVariant" tools:ignore="PrivateResource">@color/material_grey_300</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">@color/black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="TextLabel">
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/focus_button_container"
     android:background="@drawable/focus_button_background"
     android:clickable="true"
@@ -8,7 +9,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UseCompoundDrawables,UselessParent">
         <ImageView
             android:layout_gravity="center_vertical"
             android:id="@+id/button_icon"
@@ -16,14 +18,14 @@
             android:layout_width="@dimen/focus_notify_button_icon_size"
             android:layout_height="@dimen/focus_notify_button_icon_size"
             android:layout_marginStart="8dp"
-            android:layout_marginVertical="4.5dp" />
+            android:layout_marginVertical="4.5dp"
+            tools:ignore="ContentDescription" />
         <TextView
             android:layout_gravity="center_vertical"
             android:id="@+id/focus_button_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/focus_title"
-            android:maxEms="4"
+            android:text="@string/disconnect"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:layout_marginVertical="@dimen/focus_notify_title_margin_vertical"

@@ -1,47 +1,46 @@
 package com.ghhccghk.xiaomibluetoothdiy
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.ghhccghk.xiaomibluetoothdiy.ui.theme.MyApplicationTheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.navigation.compose.*
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import cn.xiaowine.dsp.DSP
+import cn.xiaowine.dsp.data.MODE
+import cn.xiaowine.xkt.AcTool
+import com.ghhccghk.xiaomibluetoothdiy.databinding.ActivityMainBinding
+import com.ghhccghk.xiaomibluetoothdiy.tools.Tools.xpActivation
+import com.ghhccghk.xiaomibluetoothdiy.ui.viewmodel.ShareViewModel
+import com.google.android.material.navigation.NavigationBarView
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private val shareViewModel: ShareViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AcTool.init(this)
         enableEdgeToEdge()
-        setContent {
-            MyApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
+        xpActivation = DSP.init(this, BuildConfig.APPLICATION_ID, MODE.HOOK, false)
+        shareViewModel.activated = xpActivation
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MyApplicationTheme {
-        Greeting("Android")
+    override fun onStart() {
+        super.onStart()
+        (binding.nav as NavigationBarView).setupWithNavController(findNavController(R.id.nav_host_fragment))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -1,5 +1,46 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="xposed_desc">Provide Rice Painter fingerprint payment support</string>
-    <string name="focus_title">test\n</string>
+    <string name="app_name">Xiaomi Bluetooth Diy</string>
+    <string name="xposed_desc">Customize Xiaomi Bluetooth Features</string>
+    <string name="focus_title">title_test</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
+    <string name="casebattery">case</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="connect">Connected</string>
+    <string name="home_fragment_label">Home</string>
+    <string name="version_name_label">Module Version</string>
+    <string name="version_code_label">Module Version Number</string>
+    <string name="version_type_label">Module Release Version</string>
+    <string name="settings_fragment_label">Settings</string>
+    <string name="activated">Activated</string>
+    <string name="unactivated">Not Activated</string>
+    <string name="build_time_label">Build Time</string>
+    <string name="unactivated_summary">Click to restart the software</string>
+    <string name="welcome">Welcome to use</string>
+    <string name="restart">Restart</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="version_differences">The release version will not output logs, and the Debug version will output logs, so it is recommended not to install the Debug version</string>
+    <string name="fingerprint_test">Fingerprint Test</string>
+    <string name="device_label">Device Information</string>
+    <string name="about_app">About App</string>
+    <string name="about_title">About App\n</string>
+    <string name="element_text" translatable="false">123</string>
+    <string name="icon" translatable="false">1</string>
+    <string name="Developers">Main Developers and Contributors</string>
+    <string name="Developers_name" formatted="false" >Li Taibai(@ghhccghk) \n Shellwen(@ShellWen)，Thanks to ShellWen for helping to decompile the program!。 \n 康柴（QQ:1561788697），Icon Design</string>
+    <string name="version_name">Version</string>
+    <string name="licenses">Licenses</string>
+    <string name="licenses_name">LGPLv3 , However, the software uses non-commercial use of resources other than code under its own carrying agreements and copyrights.</string>
+    <string name="github_home">Github Home</string>
+    <string name="github_home_name" translatable="false">https://github.com/ghhccghk/mhspay</string>
+    <string name="play_yuanshen">I want to play Genshin.</string>
+    <string name="touchable">It\'s activated. What\'s the point?(-_-)</string>
+    <string name="fingerprint_ok">Fingerprint ok</string>
+    <string name="fingerprint_no_ok">Fingerprint No Ok</string>
+    <string name="systemversion_label">System Information</string>
+    <string name="hide_setting_bottom_summary">Hide Setting （Modification requires restarting the application）</string>
+    <string name="hide_setting_bottom">Hide App Fingerprint Setting</string>
+    <string name="hide_icon">隐藏右上角图标</string>
+    <string name="hide_icon_summary">需要重新启动作用域</string>
 </resources>

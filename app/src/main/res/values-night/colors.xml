@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="buttonBgColor">#0f000000</color>
+    <color name="buttonBgColor">#16ffffff</color>
     <color name="contentColor">#cc000000</color>
     <color name="contentColorV2">#99000000</color>
     <color name="contentDecoColor">#99000000</color>

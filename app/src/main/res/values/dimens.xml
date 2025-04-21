@@ -200,4 +200,6 @@
     <dimen name="focus_notify_tiny_text_margin_horizontal">5.0dp</dimen>
     <dimen name="focus_notify_title_margin_vertical">5.5dp</dimen>
     <dimen name="focus_notify_view_gap">2.0dp</dimen>
+    <dimen name="margin_medium" />
+    <dimen name="list_item_height" />
 </resources>
