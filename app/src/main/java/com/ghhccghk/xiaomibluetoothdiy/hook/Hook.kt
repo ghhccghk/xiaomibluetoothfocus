@@ -22,9 +22,14 @@ import com.ghhccghk.xiaomibluetoothdiy.R
 import com.ghhccghk.xiaomibluetoothdiy.tools.ConfigTools.xConfig
 import com.ghhccghk.xiaomibluetoothdiy.utils.ResInjectTool.injectModuleRes
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
+import com.github.kyuubiran.ezxhelper.EzXHelper.classLoader
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import com.hyperfocus.api.FocusApi
+import de.robv.android.xposed.XC_MethodHook
+import de.robv.android.xposed.XC_MethodHook.MethodHookParam
+import de.robv.android.xposed.XposedBridge
+import de.robv.android.xposed.XposedHelpers.findClass
 import org.json.JSONObject
 import org.luckypray.dexkit.DexKitBridge
 import java.text.NumberFormat
@@ -81,8 +86,14 @@ object Hook : BaseHook() {
                         usingStrings("ACTION_LE_AUDIO mPreWearStateList: ")
                 }
             }.single()
-            loadClass(a.name).methodFinder().first { name == "a" }.createHook {
 
+            val c = dexKitBridge.findClass {
+                matcher {
+                    usingStrings("cancle headset anti_lost notification:")
+                }
+            }.single()
+
+            loadClass(a.name).methodFinder().first { name == "a" }.createHook {
                 before { param ->
                     val api = FocusApi()
                     param.result = null
@@ -90,6 +101,7 @@ object Hook : BaseHook() {
                     val device = param.args[1] as BluetoothDevice
                     val iArr = param.args[2] as IntArray
                     val deviceName = device.name ?: "未知设备"
+                    val Z = findClass(c.name,classLoader)
                     val res = injectModuleRes(context)
 
                     val bundle = Bundle()
@@ -171,10 +183,14 @@ object Hook : BaseHook() {
                     val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     val channelId = ("BTHeadset" + device.address)
 
+                    val method = Z.getDeclaredMethod("c", Context::class.java, String::class.java)
+                    val result = method.invoke(null, context, device.address) as? String
+
 
                     val intent2 = Intent("com.android.bluetooth.headset.click.detail_notification").apply {
                         putExtra("bluetoothaddress", device.address)
                         putExtra("COME_FROM", "MIUI_BLUETOOTH_SETTINGS")
+                        putExtra("MIUI_HEADSET_SUPPORT", result)
                         putExtra("android.bluetooth.device.extra.DEVICE", device)
                         setIdentifier("BTHeadset" + device.address)
                     }
@@ -199,22 +215,15 @@ object Hook : BaseHook() {
                 }
             }
             loadClass(b.name).methodFinder().first { name == "onReceive" }.createHook {
-                after { param ->
-                    val context= param.args[0] as Context
-                    val intent = param.args[1] as Intent
-                    val action = intent.action
-                    if ("com.android.bluetooth.headset.notification" == action) {
-                        param.args[1] = int
-                    }
-                }
                 before { param ->
                     val context= param.args[0] as Context
                     val intent = param.args[1] as Intent
                     val action = intent.action
-                    if ("com.android.bluetooth.headset.notification" == action) {
+                    if ("com.android.bluetooth.headset.click.detail_notification" == action) {
                         intent.toString().log()
-
                         intent.extras.log()
+                        intent.extras?.get("android.bluetooth.device.extra.DEVICE").log()
+                        intent.extras?.get("MIUI_HEADSET_SUPPORT").log()
                     }
                 }
             }

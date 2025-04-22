@@ -22,4 +22,6 @@ class HomeViewModel(private val state: SavedStateHandle) : ViewModel() {
         set(value) {
             state["buildTimeValue"] = value
         }
+
+
 }

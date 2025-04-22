@@ -12,4 +12,5 @@
     <color name="titleColor">#ffffff</color>
     <color name="titleDecoColor">#e6ffffff</color>
     <color name="lineColor">#19ffffff</color>
+    <color name="bgColor">#86000000</color>
 </resources>

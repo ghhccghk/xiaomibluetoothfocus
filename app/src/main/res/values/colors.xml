@@ -21,5 +21,6 @@
     <color name="descColor">#3482ff</color>
     <color name="titleColor">#000000</color>
     <color name="titleDecoColor">#e6000000</color>
+    <color name="bgColor">#86ffffff</color>
     <color name="lineColor">#19000000</color>
 </resources>

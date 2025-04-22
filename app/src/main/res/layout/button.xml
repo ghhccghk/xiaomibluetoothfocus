@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
+    android:layout_marginTop="8dp"
     android:layout_marginStart="1dp"
     android:layout_alignParentEnd="true">
     <FrameLayout
@@ -32,7 +33,8 @@
 
         <TextView
             android:layout_gravity="bottom"
-            android:textSize="13sp"
+            android:layout_marginTop="2dp"
+            android:textSize="15sp"
             android:id="@+id/focus_small_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
