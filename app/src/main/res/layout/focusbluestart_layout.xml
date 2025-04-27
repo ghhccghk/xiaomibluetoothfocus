@@ -3,20 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_bt_status"
     android:layout_width="match_parent"
-    android:layout_height="135dp"
+    android:layout_height="131dp"
     android:layout_marginStart="3dp"
     android:layout_marginEnd="3dp"
     android:orientation="vertical"
-    android:padding="14dp">
+    android:padding="14dp"
+    tools:ignore="TextSizeCheck">
 
     <!-- 顶部信息布局 -->
     <LinearLayout
         android:id="@+id/layout_top"
-        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/info_container"
@@ -26,6 +27,7 @@
             android:orientation="vertical">
 
             <include layout="@layout/bluename" />
+
             <include layout="@layout/bluebattery" />
 
         </LinearLayout>
@@ -40,9 +42,8 @@
             android:contentDescription="@string/disconnect"
             android:scaleType="centerInside"
             android:src="@drawable/lycaon_icon"
-            android:gravity="center_horizontal"
             android:visibility="visible"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     </LinearLayout>
 

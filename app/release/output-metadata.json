@@ -13,7 +13,7 @@
       "attributes": [],
       "versionCode": 1,
       "versionName": "1.0",
-      "outputFile": "xiaomibluetoothdiy-1.0-1-release-1745245320330.apk"
+      "outputFile": "xiaomibluetoothdiy-1.0-1-release-1745330841887.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/xiaomibluetoothdiy-1.0-1-release-1745245320330.dm"
+        "baselineProfiles/1/xiaomibluetoothdiy-1.0-1-release-1745330841887.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/xiaomibluetoothdiy-1.0-1-release-1745245320330.dm"
+        "baselineProfiles/0/xiaomibluetoothdiy-1.0-1-release-1745330841887.dm"
       ]
     }
   ],

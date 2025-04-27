@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import com.ghhccghk.xiaomibluetoothdiy.R
 import com.ghhccghk.xiaomibluetoothdiy.databinding.FragmentSettingsBinding
 import com.ghhccghk.xiaomibluetoothdiy.tools.ConfigTools.config
+import com.ghhccghk.xiaomibluetoothdiy.tools.LayoutIdService
 import com.ghhccghk.xiaomibluetoothdiy.tools.Tools.dp2px
 import com.ghhccghk.xiaomibluetoothdiy.ui.view.Preferences
 import com.google.android.material.textview.MaterialTextView
@@ -40,70 +41,19 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 创建父布局 LinearLayout
-        val parentLayout = LinearLayout(context).apply {
-            orientation = LinearLayout.VERTICAL
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
+        val homeUiTestLayout = context?.let { uiset(context = it) }
+
+        val imagelogo: ImageButton? = if (config.uiname == "focusbluestart_layout") {
+            homeUiTestLayout
+                ?.findViewById<LinearLayout>(R.id.layout_bt_status)
+                ?.findViewById(R.id.imagelogo)
+        } else {
+            null
         }
 
-        // 创建标题 TextView
-        val titleTextView = TextView(context).apply {
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                leftMargin = dpToPx(22)      // 上方间隙 12dp
-                bottomMargin = dpToPx(10)   // 底部间隙 4dp
-            }
-            setText(R.string.蓝牙通知预览)
-        }
-        // 添加标题 TextView 到父布局
-        parentLayout.addView(titleTextView)
-
-        // 创建外层 LinearLayout
-        val homeUiTestLayout = LinearLayout(context).apply {
-            id = View.generateViewId()
-            orientation = LinearLayout.HORIZONTAL
-            gravity = Gravity.CENTER_VERTICAL
-            setPadding(dpToPx(4), dpToPx(4), dpToPx(4), dpToPx(4)) // 4dp paddingBottom
-            layoutParams = LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                topMargin = dpToPx(10)
-            }
-            background = ContextCompat.getDrawable(context, R.drawable.focus_background)
-        }
-
-    // 动态加载并添加 focustest_layout
-        val includedView = LayoutInflater.from(context).inflate(R.layout.focustest_layout, homeUiTestLayout, false)
-        homeUiTestLayout.addView(includedView)
-
-        // 如果需要将 homeUiTestLayout 添加到 parentLayout
-        parentLayout.addView(homeUiTestLayout)
-
-        // 设置 includedView 的左右间隙 (margin)
-        val params = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        ).apply {
-            // 设置左右 margin 以提供空隙
-            leftMargin = dpToPx(18) // 左侧间隙
-            rightMargin = dpToPx(18) // 右侧间隙
-        }
-
-// 将修改后的 layoutParams 应用到 includedView
-        homeUiTestLayout.layoutParams = params
-
-
-        val b = homeUiTestLayout.findViewById<LinearLayout>(R.id.layout_bt_status)
-        val imagelogo = b.findViewById<ImageButton>(R.id.imagelogo)
 
         binding.fragmentSettingLinearlayout.apply {
-            addView(parentLayout)
+            addView(homeUiTestLayout)
             addView(
                 createSwitchView(
                     context = context,
@@ -113,12 +63,13 @@ class SettingsFragment : Fragment() {
                     onCheckedChange = { _, isChecked ->
                         config.hideicon = isChecked
                         if (isChecked){
-                            imagelogo.visibility = View.GONE
+                            imagelogo?.let { it.visibility = View.GONE }
                         } else {
-                            imagelogo.visibility = View.VISIBLE
+                            imagelogo?.let { it.visibility = View.VISIBLE }
                         }
                     }
-                ))
+                )
+            )
         }
 
     }
@@ -222,6 +173,78 @@ class SettingsFragment : Fragment() {
 
     fun dpToPx(dp: Int): Int {
         return (dp * resources.displayMetrics.density).toInt()
+    }
+
+
+    /** 配置蓝牙测试ui*/
+    fun uiset(layoutname: String = "focusbluestart_layout",context: Context): LinearLayout {
+
+        // 创建父布局 LinearLayout
+        val parentLayout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        // 创建标题 TextView
+        val titleTextView = TextView(context).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                leftMargin = dpToPx(22)      // 上方间隙 12dp
+                bottomMargin = dpToPx(10)   // 底部间隙 4dp
+            }
+            setText(R.string.蓝牙通知预览)
+        }
+        // 添加标题 TextView 到父布局
+        parentLayout.addView(titleTextView)
+
+        // 创建外层 LinearLayout
+        val homeUiTestLayout = LinearLayout(context).apply {
+            id = View.generateViewId()
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(0, 0, 0, 0) // 4dp paddingBottom
+            layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                topMargin = dpToPx(10)
+            }
+            background = ContextCompat.getDrawable(context, R.drawable.focus_background)
+        }
+
+
+        val layoutId = LayoutIdService.getLayoutId(context, layoutname)
+
+        // 动态加载并添加 focustest_layout
+        val includedView = LayoutInflater.from(context).inflate(layoutId, homeUiTestLayout, false)
+        homeUiTestLayout.addView(includedView)
+
+        // 如果需要将 homeUiTestLayout 添加到 parentLayout
+        parentLayout.addView(homeUiTestLayout)
+
+        // 设置 includedView 的左右间隙 (margin)
+        val params = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        ).apply {
+            // 设置左右 margin 以提供空隙
+            leftMargin = dpToPx(18) // 左侧间隙
+            rightMargin = dpToPx(18) // 右侧间隙
+        }
+
+        // 将修改后的 layoutParams 应用到 includedView
+        homeUiTestLayout.layoutParams = params
+
+
+        return parentLayout
+
+
+
     }
 
 
