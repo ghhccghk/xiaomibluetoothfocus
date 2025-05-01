@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- 标题 TextView -->
+    <TextView
+        android:id="@+id/title_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/蓝牙通知预览"
+        android:textSize="16sp" />
+
+    <!-- 外层 LinearLayout，容纳动态 include 的 layout -->
+    <LinearLayout
+        android:id="@+id/home_ui_test_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/focus_background"
+        android:paddingBottom="0dp">
+
+        <!-- 动态引入的布局占位符 -->
+        <include
+            layout="@layout/bluebatteryandname_layout" />
+        <!-- 注意：@layout/your_dynamic_layout_name 请替换为实际布局文件名 -->
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -35,7 +35,11 @@
                 android:id="@+id/fragment_setting_linearlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical" >
+
+                <include
+                    layout="@layout/demoui_layout"/>
+            </LinearLayout>
 
         </ScrollView>
     </FrameLayout>

@@ -19,8 +19,8 @@ android {
         applicationId = "com.ghhccghk.xiaomibluetoothdiy"
         minSdk = 32
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.1"
         dependenciesInfo.includeInApk = false
         ndk.abiFilters += arrayOf("arm64-v8a", "armeabi-v7a", "x86", "x86_64","armeabi","mips", "mips64")
         buildConfigField("long", "BUILD_TIME", "$buildTime")

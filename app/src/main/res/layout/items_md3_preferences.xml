@@ -49,9 +49,9 @@
             android:id="@+id/switchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/switchTitle"
-            app:layout_constraintEnd_toEndOf="@+id/switchTitle"
-            app:layout_constraintTop_toTopOf="@+id/switchTitle"
+            android:layout_gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="@id/switchTitle"
+            app:layout_constraintEnd_toEndOf="@id/switchTitle"
             tools:ignore="NotSibling" />
 
     </LinearLayout>

@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class com.ghhccghk.xiaomibluetoothdiy.MainHook
+-keep class cn.xiaowine.dsp.data.**{*;}

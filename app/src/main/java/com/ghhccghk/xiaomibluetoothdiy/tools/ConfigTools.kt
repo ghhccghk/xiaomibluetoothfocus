@@ -22,10 +22,8 @@
 
 package com.ghhccghk.xiaomibluetoothdiy.tools
 
-import android.annotation.SuppressLint
-import  com.ghhccghk.xiaomibluetoothdiy.config.Config
+import com.ghhccghk.xiaomibluetoothdiy.config.Config
 
-@SuppressLint("StaticFieldLeak")
 object ConfigTools {
     val config: Config by lazy { Config() }
     val xConfig: Config by lazy { Config() }

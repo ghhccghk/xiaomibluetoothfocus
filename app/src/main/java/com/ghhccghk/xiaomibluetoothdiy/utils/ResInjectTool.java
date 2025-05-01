@@ -35,7 +35,6 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
 
 public class ResInjectTool {
-    private static final String TAG = "ResInjectTool";
     private static ResourcesLoader mResourcesLoader = null;
     private static String mModulePath = null;
     private static Handler mHandler = null;

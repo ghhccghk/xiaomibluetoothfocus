@@ -93,15 +93,21 @@ object Hook : BaseHook() {
                 }
             }.single()
 
+            val L = dexKitBridge.findClass {
+                matcher {
+                    usingStrings("show anti_lost notification in: ")
+                }
+            }.single()
+
             loadClass(a.name).methodFinder().first { name == "a" }.createHook {
                 before { param ->
-                    val api = FocusApi()
                     param.result = null
                     val context = param.args[0] as Context
                     val device = param.args[1] as BluetoothDevice
                     val iArr = param.args[2] as IntArray
                     val deviceName = device.name ?: "未知设备"
                     val Z = findClass(c.name,classLoader)
+                    val ll = findClass(L.name,classLoader)
                     val res = injectModuleRes(context)
 
                     val bundle = Bundle()
@@ -142,7 +148,7 @@ object Hook : BaseHook() {
                         PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
                     )
 
-                    val focustest_layout = res.getIdentifier("focustest_layout", "layout", "com.ghhccghk.xiaomibluetoothdiy")
+                    val focustest_layout = res.getIdentifier(xConfig.uiname, "layout", "com.ghhccghk.xiaomibluetoothdiy")
                     val kl = res.getIdentifier("kl","drawable","com.ghhccghk.xiaomibluetoothdiy")
                     val imagelogo = res.getIdentifier("imagelogo", "id","com.ghhccghk.xiaomibluetoothdiy" )
                     val device_name = res.getIdentifier("device_name", "id","com.ghhccghk.xiaomibluetoothdiy" )
@@ -158,7 +164,7 @@ object Hook : BaseHook() {
                     if (deviceName.contains("Redmi AirDots 3 Pro 原神版") ){
                         rV.setImageViewResource(imagelogo,kl)
                     }
-                    if (xConfig.hideicon){
+                    if (xConfig.hideicon || xConfig.uiname != "focusbluestart_layout"){
                         rV.setViewVisibility(imagelogo, View.GONE)
                     }
                     rV.setTextViewText(connection_status,"已连接")
@@ -167,11 +173,11 @@ object Hook : BaseHook() {
                     rV.setTextViewText(case_battery,": $case")
                     rV.setOnClickPendingIntent(disconnect,ass)
 
-                    val actionss = api.actionInfo(actionsIntent = intent, actionsTitle = "断开", actionTitleColor = "#FFFFFF")
+                    val actionss = FocusApi.actionInfo(actionIntent = intent, actionTitle = "断开", actionTitleColor = "#FFFFFF")
                     actionss.put("actionIntentType",2)
                     actionss.toString().log()
 
-                    val focus = api.senddiyFocus(
+                    val focus = FocusApi.senddiyFocus(
                         ticker = "",
                         picticker = Icon.createWithResource(context,android.R.drawable.stat_sys_data_bluetooth),
                         rv = rV,
@@ -186,12 +192,15 @@ object Hook : BaseHook() {
                     val method = Z.getDeclaredMethod("c", Context::class.java, String::class.java)
                     val result = method.invoke(null, context, device.address) as? String
 
+                    val methoda = ll.getDeclaredMethod("e0", Context::class.java, BluetoothDevice::class.java)
+                    val resulta = methoda.invoke(null, context, device) as? BluetoothDevice
+
 
                     val intent2 = Intent("com.android.bluetooth.headset.click.detail_notification").apply {
                         putExtra("bluetoothaddress", device.address)
                         putExtra("COME_FROM", "MIUI_BLUETOOTH_SETTINGS")
                         putExtra("MIUI_HEADSET_SUPPORT", result)
-                        putExtra("android.bluetooth.device.extra.DEVICE", device)
+                        putExtra("android.bluetooth.device.extra.DEVICE", resulta)
                         setIdentifier("BTHeadset" + device.address)
                     }
 

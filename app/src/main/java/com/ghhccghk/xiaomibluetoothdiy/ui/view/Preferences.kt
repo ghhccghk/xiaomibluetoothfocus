@@ -6,17 +6,19 @@ import android.view.View
 import android.widget.CompoundButton
 import android.widget.TextView
 import androidx.annotation.StringRes
-import com.ghhccghk.xiaomibluetoothdiy.R
+import com.ghhccghk.xiaomibluetoothdiy.databinding.ItemsMd3PreferencesBinding
 import com.google.android.material.materialswitch.MaterialSwitch
 
 class Preferences(context: Context) {
-    private val preferencesView: View =
-        LayoutInflater.from(context).inflate(R.layout.items_md3_preferences, null)
-    val preferencesButton: MaterialSwitch = preferencesView.findViewById(R.id.switchButton)
-    val preferencesTitle: TextView = preferencesView.findViewById(R.id.switchTitle)
-    val preferencesSummary: TextView = preferencesView.findViewById(R.id.switchSummary)
+    // 使用 ViewBinding
+    private val binding: ItemsMd3PreferencesBinding =
+        ItemsMd3PreferencesBinding.inflate(LayoutInflater.from(context))
 
-    fun getView(): View = preferencesView
+    val preferencesButton: MaterialSwitch = binding.switchButton
+    val preferencesTitle: TextView = binding.switchTitle
+    val preferencesSummary: TextView = binding.switchSummary
+
+    fun getView(): View = binding.root
 
     fun setTitle(title: String) {
         preferencesTitle.text = title
@@ -31,7 +33,7 @@ class Preferences(context: Context) {
     }
 
     fun setViewClickToggleSwitch() {
-        preferencesView.setOnClickListener {
+        binding.root.setOnClickListener {
             preferencesButton.isChecked = !preferencesButton.isChecked
         }
     }
@@ -46,6 +48,6 @@ class Preferences(context: Context) {
     }
 
     fun setSummary(@StringRes resId: Int) {
-        setSummary(preferencesView.context.getString(resId))
+        setSummary(binding.root.context.getString(resId))
     }
 }

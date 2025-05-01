@@ -10,10 +10,4 @@ class ShareViewModel(private val state: SavedStateHandle) : ViewModel() {
             state["activated"] = value
         }
 
-    var hideicon : Boolean
-        get() = state["hideicon"]?: false
-        set(value){
-            state["hideicon"] = value
-        }
-
 }

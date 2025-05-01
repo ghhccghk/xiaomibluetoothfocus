@@ -44,4 +44,5 @@
     <string name="hide_icon">隐藏右上角图标</string>
     <string name="hide_icon_summary">需要重新启动作用域</string>
     <string name="蓝牙通知预览">蓝牙通知预览</string>
+    <string name="uiset">蓝牙焦点选择</string>
 </resources>
