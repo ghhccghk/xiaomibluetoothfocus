@@ -15,15 +15,19 @@ import android.widget.RemoteViews
 import android.widget.RemoteViews.RemoteView
 import androidx.compose.material3.Icon
 import androidx.transition.Visibility
+import cn.xiaowine.dsp.DSP
+import cn.xiaowine.dsp.data.MODE
 import cn.xiaowine.xkt.LogTool.log
 import cn.xiaowine.xkt.Tool.isNull
 import com.ghhccghk.xiaomibluetoothdiy.BaseHook
+import com.ghhccghk.xiaomibluetoothdiy.BuildConfig
 import com.ghhccghk.xiaomibluetoothdiy.R
 import com.ghhccghk.xiaomibluetoothdiy.tools.ConfigTools.xConfig
 import com.ghhccghk.xiaomibluetoothdiy.utils.ResInjectTool.injectModuleRes
 import com.github.kyuubiran.ezxhelper.ClassUtils.loadClass
 import com.github.kyuubiran.ezxhelper.EzXHelper.classLoader
 import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
+import com.github.kyuubiran.ezxhelper.finders.MethodFinder
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import com.hyperfocus.api.FocusApi
 import de.robv.android.xposed.XC_MethodHook
@@ -101,6 +105,7 @@ object Hook : BaseHook() {
 
             loadClass(a.name).methodFinder().first { name == "a" }.createHook {
                 before { param ->
+                    DSP.init(null, BuildConfig.APPLICATION_ID, MODE.HOOK, true)
                     param.result = null
                     val context = param.args[0] as Context
                     val device = param.args[1] as BluetoothDevice
@@ -166,6 +171,10 @@ object Hook : BaseHook() {
                     }
                     if (xConfig.hideicon || xConfig.uiname != "focusbluestart_layout"){
                         rV.setViewVisibility(imagelogo, View.GONE)
+                    } else {
+                        if (xConfig.uiname == "focusbluestart_layout") {
+                            rV.setViewVisibility(imagelogo, View.VISIBLE)
+                        }
                     }
                     rV.setTextViewText(connection_status,"已连接")
                     rV.setTextViewText(right_battery,": $right")
@@ -189,10 +198,20 @@ object Hook : BaseHook() {
                     val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                     val channelId = ("BTHeadset" + device.address)
 
-                    val method = Z.getDeclaredMethod("c", Context::class.java, String::class.java)
+                    val method = MethodFinder.fromClass(Z)
+                        .filter {
+                            val params = parameterTypes
+                            params.size == 2 && params[0] == Context::class.java && params[1] == String::class.java
+                        }
+                        .single()
                     val result = method.invoke(null, context, device.address) as? String
 
-                    val methoda = ll.getDeclaredMethod("e0", Context::class.java, BluetoothDevice::class.java)
+                    val methoda = MethodFinder.fromClass(ll)
+                        .filter {
+                            val params = parameterTypes
+                            params.size == 2 && params[0] == Context::class.java && params[1] == BluetoothDevice::class.java
+                        }
+                        .single()
                     val resulta = methoda.invoke(null, context, device) as? BluetoothDevice
 
 
